@@ -47,6 +47,7 @@ export async function GET(_request, { params }) {
   }
 }
 
+
 export async function PUT(request, { params }) {
   try {
     const admin = getSupabaseServerAdminClient();
