@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../auth/AuthContext';
 
-export default function LoginPage() {
+function LoginPageContent() {
   const { login } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -71,5 +71,24 @@ export default function LoginPage() {
         </form>
       </section>
     </main>
+  );
+}
+
+function LoginPageFallback() {
+  return (
+    <main className="app">
+      <section className="hero">
+        <h1>Iniciar sesión</h1>
+        <p style={{ color: 'var(--muted)' }}>Cargando formulario…</p>
+      </section>
+    </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<LoginPageFallback />}>
+      <LoginPageContent />
+    </Suspense>
   );
 }
