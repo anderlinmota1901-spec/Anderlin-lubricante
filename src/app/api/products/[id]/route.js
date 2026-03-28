@@ -51,7 +51,7 @@ export async function PUT(request, { params }) {
   try {
     const admin = getSupabaseServerAdminClient();
     const payload = await request.json();
-    const { id } = params;
+    const { id } = await params;
     const updates = {
       name: payload.name?.trim(),
       description: payload.description?.trim() ?? '',
@@ -87,7 +87,7 @@ export async function PUT(request, { params }) {
 export async function DELETE(_request, { params }) {
   try {
     const admin = getSupabaseServerAdminClient();
-    const { id } = params;
+    const { id } = await params;
     const { error } = await admin.from(TABLE_NAME).delete().eq('id', id);
 
     if (error) {
