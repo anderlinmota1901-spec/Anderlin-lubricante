@@ -12,7 +12,7 @@ const currency = new Intl.NumberFormat('es-DO', {
   maximumFractionDigits: 2,
 });
 
-const buildWhatsappUrl = (product, phone = '+18095551234') => {
+const buildWhatsappUrl = (product, phone = '+18297857481') => {
   const message = `Hola, me interesa el producto ${product.name} (${currency.format(product.price)}). ¿Podemos hablar?`;
   const normalizedPhone = phone.replace(/[^\d]/g, '');
   return `https://wa.me/${normalizedPhone}?text=${encodeURIComponent(message)}`;
